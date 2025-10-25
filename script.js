@@ -105,7 +105,7 @@ const menuItems = [
       "Uma combinação exuberante dos sabores mais nobres do mar: tentáculos de polvo grelhados com textura macia e sabor intenso, acompanhados por caudas de lagosta suculentas, douradas na manteiga de ervas. Servidos com guarnições tropicais e toque cítrico de limão fresco, esse prato especial é uma verdadeira joia da culinária praiana — sofisticado, vibrante e exclusivo do Marlonista",
     price: "R$ 22,50",
     category: "principais",
-    image: "img-marlonista/fritas-camarao.jpg",
+    image: "img-marlonista/polvo-lagosta.jpg",
   },
   {
     id: 13,
@@ -114,7 +114,7 @@ const menuItems = [
       "Camarões frescos salteados com alho, cebola e ervas aromáticas, envolvidos em um arroz refogado com açafrão, pimentões e temperos da casa. O prato é finalizado com folhas de manjericão e toque de tomate fresco, criando uma combinação leve, colorida e cheia de sabor. Uma receita clássica com alma praiana — perfeita para quem busca conforto e frescor à beira-mar.",
     price: "R$ 22,50",
     category: "principais",
-    image: "img-marlonista/fritas-camarao.jpg",
+    image: "img-marlonista/camarao-arroz-refogado.jpg",
   },
 ];
 
