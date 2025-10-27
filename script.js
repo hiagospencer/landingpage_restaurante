@@ -1,3 +1,14 @@
+// === MODAL DO CARDÁPIO ===
+const modal = document.getElementById("menu-modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+const modalDesc = document.getElementById("modal-desc");
+const modalCategory = document.getElementById("modal-category");
+const modalClose = document.querySelector(".menu-modal-close");
+
+// Seleciona todos os cards de prato
+const pratos = document.querySelectorAll(".card");
+
 const menuItems = [
   {
     id: 1,
@@ -275,6 +286,51 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  function activateMenuModal() {
+    const items = document.querySelectorAll(".menu-item");
+
+    items.forEach((item) => {
+      item.addEventListener("click", () => {
+        const img = item.querySelector("img").src;
+        const title = item.querySelector(".menu-item-title").innerText;
+        const desc = item.querySelector("p").innerText;
+        const category = item.dataset.category;
+
+        modalImg.src = img;
+        modalTitle.textContent = title;
+        modalDesc.textContent = desc;
+        modalCategory.textContent = category;
+
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden"; // impede rolagem
+      });
+    });
+  }
+
+  // Chama a função ao renderizar o menu
+  activateMenuModal();
+
+  // Reativa o modal sempre que o menu for renderizado novamente
+  const originalRenderMenuItems = renderMenuItems;
+  renderMenuItems = function (...args) {
+    originalRenderMenuItems.apply(this, args);
+    setTimeout(activateMenuModal, 200);
+  };
+
+  // Fechar modal
+  modalClose.addEventListener("click", () => {
+    modal.classList.remove("show");
+    document.body.style.overflow = "auto";
+  });
+
+  // Fechar ao clicar fora
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+  });
+
   // Renderizar bebidas
   // const drinksContainer = document.querySelector(".drinks .menu-items");
   // renderMenuItems(drinkItems, drinksContainer, true);
@@ -340,4 +396,34 @@ document.addEventListener("DOMContentLoaded", function () {
     alert("Obrigado por se inscrever em nossa newsletter!");
     newsletterForm.reset();
   });
+});
+
+// Percorre cada prato e adiciona o evento de clique
+pratos.forEach((card) => {
+  card.addEventListener("click", () => {
+    const img = card.querySelector("img").src;
+    const title = card.querySelector("h3").innerText;
+    const desc = card.querySelector("p").innerText;
+
+    modalImg.src = img;
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden"; // trava o scroll
+  });
+});
+
+// Fecha o modal ao clicar no X
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("show");
+  document.body.style.overflow = "auto";
+});
+
+// Fecha o modal ao clicar fora do conteúdo
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.classList.remove("show");
+    document.body.style.overflow = "auto";
+  }
 });
